@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 
@@ -9,14 +10,122 @@ namespace PrimeLibrary
     public static bool IsPrime(int number)
     {
       if (number <= 1) return false;
-      if (number == 2) return true;
-      if (number % 2 == 0) return false;
-      for (int i = 3; i * i <= number; i += 2)
+      if (number == 2 || number == 3 || number == 5 || number == 7) return true;
+      if (number % 2 == 0 || number % 3 == 0 || number % 5 == 0 || number % 7 == 0) return false;
+      for (int divisor = 11; divisor * divisor <= number; divisor += 2)
       {
-        if (number % i == 0) return false;
+        if (number % divisor == 0) return false;
       }
 
       return true;
+    }
+
+    public static string GetDivisorForPrimeCalculation(int number)
+    {
+      var divisors = new List<int>();
+      if (number <= 1)
+      {
+        divisors.Add(number);
+        return string.Join("<= 1, ", divisors);
+      }
+
+      if (number == 2 || number == 3 || number == 5 || number == 7)
+      {
+        divisors.Add(number);
+        return string.Join(", ", divisors);
+      }
+
+      if (number % 2 == 0 )
+      {
+        divisors.Add(2);
+        return string.Join(", ", divisors);
+      }
+
+      if (number % 3 == 0 )
+      {
+        divisors.Add(3);
+        return string.Join(", ", divisors);
+      }
+
+      if (number % 5 == 0 )
+      {
+        divisors.Add(5);
+        return string.Join(", ", divisors);
+      }
+
+      if (number % 7 == 0 )
+      {
+        divisors.Add(7);
+        return string.Join(", ", divisors);
+      }
+
+      for (int divisor = 11; divisor * divisor <= number; divisor += 2)
+      {
+        if (number % divisor == 0) 
+        {
+          divisors.Add(divisor);
+          return string.Join(", ", divisors);
+        }
+        else
+        {
+          divisors.Add(divisor);
+        }
+      }
+
+      return string.Join(", ", divisors);
+    }
+
+    public static string GetDivisors(int number)
+    {
+      if (number <= 0) throw new ArgumentOutOfRangeException(nameof(number), "number must be greater than 0.");
+      var divisors = new System.Collections.Generic.List<int>();
+      for (int i = 1; i <= number; i++)
+      {
+        if (number % i == 0)
+        {
+          divisors.Add(i);
+        }
+      }
+     
+      return string.Join(", ", divisors);
+    }
+
+    public static string GetPrimeDivisors(int number)
+    {
+      var result = GetDivisors(number).Split(new[] { ", " }, StringSplitOptions.RemoveEmptyEntries)
+        .Select(int.Parse)
+        .Where(IsPrime)
+        .ToList();
+      return string.Join(", ", result);
+    }
+
+    public static string GetNonPrimeDivisors(int number)
+    {
+      var result = GetDivisors(number).Split(new[] { ", " }, StringSplitOptions.RemoveEmptyEntries)
+        .Select(int.Parse)
+        .Where(n => !IsPrime(n))
+        .ToList();
+      return string.Join(", ", result);
+    }
+
+    public static string FormatTime(TimeSpan timeSpan)
+    {
+      if (timeSpan.TotalSeconds < 1)
+      {
+        return $"{timeSpan.Milliseconds} ms";
+      }
+
+      if (timeSpan.TotalMinutes < 1)
+      {
+        return $"{timeSpan.Seconds} s  {timeSpan.Milliseconds} ms";
+      }
+
+      if (timeSpan.TotalHours < 1)
+      {
+        return $"{timeSpan.Minutes} min  {timeSpan.Seconds} s  {timeSpan.Milliseconds} ms";
+      }
+
+      return $"{(int)timeSpan.TotalHours} h  {timeSpan.Minutes} min  {timeSpan.Seconds} s  {timeSpan.Milliseconds} ms";
     }
 
     public static string GetPrimeNumbersUpTo(int limit)
@@ -377,6 +486,20 @@ namespace PrimeLibrary
       GetPrimeNumbersUpTo(limit);
       stopwatch.Stop();
       return stopwatch.Elapsed;
+    }
+
+    public static TimeSpan TimeSearchForPrimeInRange(int start, int end)
+    {
+      var stopwatch = Stopwatch.StartNew();
+      GetPrimeNumbersInRange(start, end);
+      stopwatch.Stop();
+      return stopwatch.Elapsed;
+    }
+
+    public static string ExecutionTimeForPrimeSearchUpTo(int limit)
+    {
+      var timeSpan = TimeSearchForPrimeUpTo(limit);
+      return FormatTime(timeSpan);
     }
   }
 }
