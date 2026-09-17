@@ -21,6 +21,28 @@ namespace PrimeLibrary
       return true;
     }
 
+    public static string IsPrimeWithDivisors(int number)
+    {
+      if (number <= 1) return $"{number} false because it is less than or equal to 1";
+      if (number == 2 || number == 3 || number == 5 || number == 7) return $"{number} true";
+      if (number % 2 == 0 || number % 3 == 0 || number % 5 == 0 || number % 7 == 0) return $"{number} false";
+      string result = string.Empty;
+      for (int divisor = 11; divisor * divisor <= number; divisor += 2)
+      {
+        //if (divisor.ToString().EndsWith("5")) return false;
+        if (number % divisor == 0)
+        {
+          return $"{number} false because it is divisible by {divisor} and route was : {result}";
+        }
+        else
+        {
+          result += $"{divisor}, ";
+        }
+      }
+
+      return $"{number} true";
+    }
+
     public static string GetDivisorForPrimeCalculation(int number)
     {
       var divisors = new List<int>();

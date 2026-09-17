@@ -41,7 +41,7 @@ namespace ConsoleAppSearchPrimeOptimisation
 
       for (int i = 11; i < 10_000; i += 2)
       {
-        Display($"{i} est premier : {PrimeHelper.IsPrime(i)}");
+        Display($"{i} est premier : {PrimeHelper.IsPrimeWithDivisors(i)}");
       }
 
       Display("Press any key to exit:");
