@@ -14,6 +14,7 @@ namespace PrimeLibrary
       if (number % 2 == 0 || number % 3 == 0 || number % 5 == 0 || number % 7 == 0) return false;
       for (int divisor = 11; divisor * divisor <= number; divisor += 2)
       {
+        //if (divisor.ToString().EndsWith("5")) return false;
         if (number % divisor == 0) return false;
       }
 
@@ -61,6 +62,11 @@ namespace PrimeLibrary
 
       for (int divisor = 11; divisor * divisor <= number; divisor += 2)
       {
+        if (divisor.ToString().EndsWith("5"))
+        {
+          continue;
+        }
+
         if (number % divisor == 0) 
         {
           divisors.Add(divisor);
@@ -70,6 +76,11 @@ namespace PrimeLibrary
         {
           divisors.Add(divisor);
         }
+      }
+
+      if (divisors.Count == 0)
+      {
+        divisors.Add(11);
       }
 
       return string.Join(", ", divisors);

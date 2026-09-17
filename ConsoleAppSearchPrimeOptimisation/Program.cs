@@ -16,24 +16,34 @@ namespace ConsoleAppSearchPrimeOptimisation
       {
         if (PrimeHelper.IsPrime(i))
         {
-          Display($"{i} est premier");
+          //Display($"{i} est premier");
         }
       }
 
-      Display($"Le temps d'exécution de la recherche de nombres premiers est de {PrimeHelper.ExecutionTimeForPrimeSearchUpTo(max)}");
+      //Display($"Le temps d'exécution de la recherche de nombres premiers est de {PrimeHelper.ExecutionTimeForPrimeSearchUpTo(max)}");
       string message = $"Pour calculer les nombres premiers de 2 à {max}, cela prends : {PrimeHelper.ExecutionTimeForPrimeSearchUpTo(max)}";
       string filename = "PrimeExecutionTime.txt";
-      WriteToFile(filename, message);
-      Display($"Le temps d'exécution a été écrit dans le fichier {filename}");
+      //WriteToFile(filename, message);
+      //Display($"Le temps d'exécution a été écrit dans le fichier {filename}");
       Display(message);
 
-      Display($"Get divisors of 28: {PrimeHelper.GetDivisors(28)}");
+      //Display($"Get divisors of 28: {PrimeHelper.GetDivisors(28)}");
 
-      Display($"Get prime divisors of 28: {PrimeHelper.GetPrimeDivisors(28)}");
-      Display($"Get non-prime divisors of 28: {PrimeHelper.GetNonPrimeDivisors(28)}");
+      //Display($"Get prime divisors of 28: {PrimeHelper.GetPrimeDivisors(28)}");
+      //Display($"Get non-prime divisors of 28: {PrimeHelper.GetNonPrimeDivisors(28)}");
 
       Display($"Get all divisors of 109: {PrimeHelper.GetDivisorForPrimeCalculation(109)}");
-      
+
+      for (int i = 11; i < 10_000; i += 2)
+      {
+        Display($"Get all divisors of {i}: {PrimeHelper.GetDivisorForPrimeCalculation(i)}");
+      }
+
+      for (int i = 11; i < 10_000; i += 2)
+      {
+        Display($"{i} est premier : {PrimeHelper.IsPrime(i)}");
+      }
+
       Display("Press any key to exit:");
       //Console.ReadKey();
     }
