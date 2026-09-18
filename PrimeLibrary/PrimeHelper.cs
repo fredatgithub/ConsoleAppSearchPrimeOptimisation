@@ -35,7 +35,7 @@ namespace PrimeLibrary
         //if (divisor.ToString().EndsWith("5")) return false;
         if (number % divisor == 0)
         {
-          return $"{number} false because it is divisible by {divisor} and route was : {result}";
+          return $"{number} false because it is divisible by {divisor} and route was : {result.TrimEnd(',', ' ')}";
         }
         else
         {
@@ -43,7 +43,8 @@ namespace PrimeLibrary
         }
       }
 
-      return $"{number} true because it is not divisible by any number up to its square root and route was : {result}";
+      // because it is not divisible by any number up to its square root 
+      return $"{number} true and route was : {result.TrimEnd(',', ' ')}";
     }
 
     public static string GetDivisorForPrimeCalculation(int number)
