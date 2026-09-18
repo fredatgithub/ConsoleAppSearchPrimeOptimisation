@@ -40,7 +40,7 @@ namespace ConsoleAppSearchPrimeOptimisation
       //  Display($"Get all divisors of {i}: {PrimeHelper.GetDivisorForPrimeCalculation(i)}");
       //}
 
-      const int max = 11_100;
+      const int max = 500_000;
       for (int i = 3; i < max; i += 2)
       {
         string result = PrimeHelper.IsPrimeWithDivisors(i);
