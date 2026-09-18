@@ -10,6 +10,7 @@ namespace ConsoleAppSearchPrimeOptimisation
     static void Main()
     {
       void Display(string message2) => Console.WriteLine(message2);
+      void DisplayNoReturn(string message3) => Console.WriteLine(message3);
       Display("Optimisation de la recherche de nombres premiers");
       //const int max = 111;
       //for (int i = 0; i < max; i++)
@@ -42,11 +43,23 @@ namespace ConsoleAppSearchPrimeOptimisation
       const int max = 11_100;
       for (int i = 3; i < max; i += 2)
       {
-        Display($"{i} est premier : {PrimeHelper.IsPrimeWithDivisors(i)}");
+        string result = PrimeHelper.IsPrimeWithDivisors(i);
+        Display($"{i} est premier : {ColorString(result)}");
       }
 
       Display("Press any key to exit:");
       //Console.ReadKey();
+    }
+
+    private static string ColorString(string message)
+    {
+      // Display the result with color
+      return message switch
+      {
+        "True" => $"{ConsoleColor.Green}{message}{ConsoleColor.White}",
+        "False" => $"{ConsoleColor.Red}{message}{ConsoleColor.White}",
+        _ => message,
+      };
     }
 
     private static void WriteToFile(string filename, string message, bool append = true)
