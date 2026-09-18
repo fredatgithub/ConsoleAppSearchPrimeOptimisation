@@ -25,7 +25,10 @@ namespace PrimeLibrary
     {
       if (number <= 1) return $"{number} false because it is less than or equal to 1";
       if (number == 2 || number == 3 || number == 5 || number == 7) return $"{number} true";
-      if (number % 2 == 0 || number % 3 == 0 || number % 5 == 0 || number % 7 == 0) return $"{number} false";
+      if (number % 2 == 0) return $"{number} false because it is divisible by 2";
+      if (number % 3 == 0) return $"{number} false because it is divisible by 3";
+      if (number % 5 == 0) return $"{number} false because it is divisible by 5";
+      if (number % 7 == 0) return $"{number} false because it is divisible by 7";
       string result = string.Empty;
       for (int divisor = 11; divisor * divisor <= number; divisor += 2)
       {
@@ -40,7 +43,7 @@ namespace PrimeLibrary
         }
       }
 
-      return $"{number} true";
+      return $"{number} true because it is not divisible by any number up to its square root and route was : {result}";
     }
 
     public static string GetDivisorForPrimeCalculation(int number)
