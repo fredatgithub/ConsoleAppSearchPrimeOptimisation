@@ -63,5 +63,16 @@ namespace ConsoleAppSearchPrimeOptimisation
         Console.WriteLine(exception.ToString());
       }
     }
+
+    private static string FormatNumber(double number)
+    {
+      return string.Format("{0:### ### ###.##}", number);
+    }
+
+    private static void DisplayColorLetters(ConsoleColor color, string message)
+    {
+      Console.ForegroundColor = color;
+      Console.Write(message);
+    }
   }
 }

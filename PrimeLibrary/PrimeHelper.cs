@@ -115,7 +115,7 @@ namespace PrimeLibrary
     public static string GetDivisors(int number)
     {
       if (number <= 0) throw new ArgumentOutOfRangeException(nameof(number), "number must be greater than 0.");
-      var divisors = new System.Collections.Generic.List<int>();
+      var divisors = new List<int>();
       for (int i = 1; i <= number; i++)
       {
         if (number % i == 0)
@@ -167,7 +167,7 @@ namespace PrimeLibrary
 
     public static string GetPrimeNumbersUpTo(int limit)
     {
-      var primes = new System.Collections.Generic.List<int>();
+      var primes = new List<int>();
       for (int i = 2; i <= limit; i++)
       {
         if (IsPrime(i))
@@ -180,7 +180,7 @@ namespace PrimeLibrary
 
     public static string GetPrimeNumbersInRange(int start, int end)
     {
-      var primes = new System.Collections.Generic.List<int>();
+      var primes = new List<int>();
       for (int i = start; i <= end; i++)
       {
         if (IsPrime(i))
@@ -236,7 +236,7 @@ namespace PrimeLibrary
     public static string GetFirstNPrimes(int n)
     {
       if (n < 1) throw new ArgumentOutOfRangeException(nameof(n), "n must be greater than 0.");
-      var primes = new System.Collections.Generic.List<int>();
+      var primes = new List<int>();
       int count = 0;
       int number = 1;
       while (count < n)
@@ -254,7 +254,7 @@ namespace PrimeLibrary
     public static string GetPrimeFactors(int number)
     {
       if (number < 2) throw new ArgumentOutOfRangeException(nameof(number), "number must be greater than 1.");
-      var factors = new System.Collections.Generic.List<int>();
+      var factors = new List<int>();
       for (int i = 2; i <= number; i++)
       {
         while (number % i == 0)
@@ -269,7 +269,7 @@ namespace PrimeLibrary
     public static string GetPrimeFactorsInRange(int start, int end)
     {
       if (start < 2 || end < 2) throw new ArgumentOutOfRangeException("start and end must be greater than 1.");
-      var factors = new System.Collections.Generic.List<int>();
+      var factors = new List<int>();
       for (int i = start; i <= end; i++)
       {
         factors.AddRange(GetPrimeFactors(i).Split(new[] { ", " }, StringSplitOptions.RemoveEmptyEntries).Select(int.Parse));
@@ -280,7 +280,7 @@ namespace PrimeLibrary
     public static string GetUniquePrimeFactors(int number)
     {
       if (number < 2) throw new ArgumentOutOfRangeException(nameof(number), "number must be greater than 1.");
-      var factors = new System.Collections.Generic.HashSet<int>();
+      var factors = new HashSet<int>();
       for (int i = 2; i <= number; i++)
       {
         while (number % i == 0)
@@ -295,7 +295,7 @@ namespace PrimeLibrary
     public static string GetUniquePrimeFactorsInRange(int start, int end)
     {
       if (start < 2 || end < 2) throw new ArgumentOutOfRangeException("start and end must be greater than 1.");
-      var factors = new System.Collections.Generic.HashSet<int>();
+      var factors = new HashSet<int>();
       for (int i = start; i <= end; i++)
       {
         factors.UnionWith(GetUniquePrimeFactors(i).Split(new[] { ", " }, System.StringSplitOptions.RemoveEmptyEntries).Select(int.Parse));
@@ -318,7 +318,7 @@ namespace PrimeLibrary
           }
         }
       }
-      var primes = new System.Collections.Generic.List<int>();
+      var primes = new List<int>();
       for (int i = 2; i <= limit; i++)
       {
         if (isPrime[i])
@@ -344,7 +344,7 @@ namespace PrimeLibrary
           }
         }
       }
-      var primes = new System.Collections.Generic.List<int>();
+      var primes = new List<int>();
       for (int i = start; i <= end; i++)
       {
         if (isPrime[i])
@@ -454,7 +454,7 @@ namespace PrimeLibrary
           }
         }
       }
-      var primes = new System.Collections.Generic.List<int>();
+      var primes = new List<int>();
       for (int i = 2; i <= limit && primes.Count < n; i++)
       {
         if (isPrime[i])
@@ -480,7 +480,7 @@ namespace PrimeLibrary
           }
         }
       }
-      var factors = new System.Collections.Generic.List<int>();
+      var factors = new List<int>();
       for (int i = 2; i <= number; i++)
       {
         if (isPrime[i] && number % i == 0)
@@ -506,7 +506,7 @@ namespace PrimeLibrary
           }
         }
       }
-      var factors = new System.Collections.Generic.HashSet<int>();
+      var factors = new HashSet<int>();
       for (int i = 2; i <= number; i++)
       {
         if (isPrime[i] && number % i == 0)
